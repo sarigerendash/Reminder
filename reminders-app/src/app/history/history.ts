@@ -13,7 +13,7 @@ const REFRESH_INTERVAL_MS = 3000;
   templateUrl: './history.html',
   styleUrl: './history.css'
 })
-export class History implements OnInit {
+export class ReminderHistory implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   constructor(public svc: ReminderService) {}
@@ -26,7 +26,7 @@ export class History implements OnInit {
     ).subscribe();
   }
 
-  statusClass(s: string) {
-    return { success: s === 'Success', failed: s === 'Failed' };
+  statusClass(status: string) {
+    return { success: status === 'Success', failed: status === 'Failed' };
   }
 }

@@ -32,10 +32,10 @@ export class Reminders implements OnInit {
   }
 
   openCreate() { this.editing.set(null); this.showForm.set(true); }
-  openEdit(r: Reminder) { this.editing.set(r); this.showForm.set(true); }
+  openEdit(reminder: Reminder) { this.editing.set(reminder); this.showForm.set(true); }
   closeForm() { this.showForm.set(false); }
 
-  statusClass(s: string) {
-    return { pending: s === 'Pending', running: s === 'Running', success: s === 'Success', failed: s === 'Failed' };
+  statusClass(status: string) {
+    return { pending: status === 'Pending', running: status === 'Running', success: status === 'Success', failed: status === 'Failed' };
   }
 }

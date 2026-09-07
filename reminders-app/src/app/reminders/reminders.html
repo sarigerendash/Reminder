@@ -13,16 +13,16 @@
     </tr>
   </thead>
   <tbody>
-    @for (r of svc.reminders(); track r.id) {
+    @for (reminder of svc.reminders(); track reminder.id) {
       <tr>
-        <td>{{ r.name }}</td>
-        <td>{{ r.message }}</td>
-        <td>{{ r.scheduledAt | date:'dd/MM/yyyy HH:mm' }}</td>
-        <td>{{ r.frequency }}</td>
-        <td><span class="badge" [ngClass]="statusClass(r.status)">{{ r.status }}</span></td>
-        <td>{{ r.isActive ? '✓' : '✗' }}</td>
+        <td>{{ reminder.name }}</td>
+        <td>{{ reminder.message }}</td>
+        <td>{{ reminder.scheduledAt | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ reminder.frequency }}</td>
+        <td><span class="badge" [ngClass]="statusClass(reminder.status)">{{ reminder.status }}</span></td>
+        <td>{{ reminder.isActive ? '✓' : '✗' }}</td>
         @if (auth.isAdmin()) {
-          <td><button class="btn-edit" (click)="openEdit(r)">עריכה</button></td>
+          <td><button class="btn-edit" (click)="openEdit(reminder)">עריכה</button></td>
         }
       </tr>
     }

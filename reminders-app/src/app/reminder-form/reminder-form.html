@@ -13,7 +13,7 @@
 
   <label>תדירות</label>
   <select [(ngModel)]="form.frequency">
-    @for (f of frequencies; track f) { <option [value]="f">{{ f }}</option> }
+    @for (freq of frequencies; track freq) { <option [value]="freq">{{ freq }}</option> }
   </select>
 
   <label>מספר הרצות עתידיות</label>

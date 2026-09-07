@@ -3,15 +3,16 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using RemindersApi.Apis;
+using RemindersApi.Contracts;
 using RemindersApi.Data;
-using RemindersApi.Endpoints;
 using RemindersApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(o => o.UseInMemoryDatabase("RemindersDb"));
 builder.Services.AddScoped<IReminderService, ReminderService>();
-builder.Services.AddScoped<JwtService>();
+builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddHostedService<ReminderBackgroundService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -49,7 +50,7 @@ app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapAuthEndpoints();
-app.MapReminderEndpoints();
+app.MapAuthApis();
+app.MapReminderApis();
 
 app.Run();

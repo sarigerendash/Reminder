@@ -1,4 +1,4 @@
-namespace RemindersApi.Models;
+namespace RemindersApi.Model;
 
 public class User
 {

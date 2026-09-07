@@ -2,11 +2,12 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using RemindersApi.Models;
+using RemindersApi.Contracts;
+using RemindersApi.Model;
 
 namespace RemindersApi.Services;
 
-public class JwtService(IConfiguration config)
+public class JwtService(IConfiguration config) : IJwtService
 {
     public string GenerateToken(User user)
     {

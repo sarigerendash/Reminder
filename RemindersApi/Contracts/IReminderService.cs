@@ -1,6 +1,6 @@
-using RemindersApi.DTOs;
+using RemindersApi.Model;
 
-namespace RemindersApi.Services;
+namespace RemindersApi.Contracts;
 
 public interface IReminderService
 {

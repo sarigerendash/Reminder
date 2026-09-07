@@ -1,11 +1,11 @@
-using RemindersApi.DTOs;
-using RemindersApi.Services;
+using RemindersApi.Contracts;
+using RemindersApi.Model;
 
-namespace RemindersApi.Endpoints;
+namespace RemindersApi.Apis;
 
-public static class ReminderEndpoints
+public static class ReminderApis
 {
-    public static void MapReminderEndpoints(this WebApplication app)
+    public static void MapReminderApis(this WebApplication app)
     {
         var group = app.MapGroup("/reminders").RequireAuthorization();
 

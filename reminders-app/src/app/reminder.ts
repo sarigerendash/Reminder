@@ -1,8 +1,7 @@
 import { Injectable, signal } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
 import { Reminder, ReminderRequest, ReminderRun } from './models';
-import { AuthService } from './auth';
 
 @Injectable({ providedIn: 'root' })
 export class ReminderService {
@@ -10,32 +9,28 @@ export class ReminderService {
   reminders = signal<Reminder[]>([]);
   history = signal<ReminderRun[]>([]);
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
-
-  private headers() {
-    return new HttpHeaders({ Authorization: `Bearer ${this.auth.token()}` });
-  }
+  constructor(private http: HttpClient) {}
 
   loadAll() {
-    return this.http.get<Reminder[]>(this.API, { headers: this.headers() }).pipe(
+    return this.http.get<Reminder[]>(this.API).pipe(
       tap(data => this.reminders.set(data))
     );
   }
 
   create(req: ReminderRequest) {
-    return this.http.post<Reminder>(this.API, req, { headers: this.headers() }).pipe(
+    return this.http.post<Reminder>(this.API, req).pipe(
       tap(r => this.reminders.update(list => [...list, r]))
     );
   }
 
   update(id: number, req: ReminderRequest) {
-    return this.http.put<Reminder>(`${this.API}/${id}`, req, { headers: this.headers() }).pipe(
+    return this.http.put<Reminder>(`${this.API}/${id}`, req).pipe(
       tap(r => this.reminders.update(list => list.map(x => x.id === id ? r : x)))
     );
   }
 
   loadHistory() {
-    return this.http.get<ReminderRun[]>(`${this.API}/history`, { headers: this.headers() }).pipe(
+    return this.http.get<ReminderRun[]>(`${this.API}/history`).pipe(
       tap(data => this.history.set(data))
     );
   }

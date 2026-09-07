@@ -1,15 +1,15 @@
 using Microsoft.EntityFrameworkCore;
+using RemindersApi.Contracts;
 using RemindersApi.Data;
-using RemindersApi.DTOs;
-using RemindersApi.Services;
+using RemindersApi.Model;
 
-namespace RemindersApi.Endpoints;
+namespace RemindersApi.Apis;
 
-public static class AuthEndpoints
+public static class AuthApis
 {
-    public static void MapAuthEndpoints(this WebApplication app)
+    public static void MapAuthApis(this WebApplication app)
     {
-        app.MapPost("/auth/login", async (LoginRequest req, AppDbContext db, JwtService jwt) =>
+        app.MapPost("/auth/login", async (LoginRequest req, AppDbContext db, IJwtService jwt) =>
         {
             var user = await db.Users.FirstOrDefaultAsync(u => u.Username == req.Username && u.Password == req.Password);
             if (user is null) return Results.Unauthorized();

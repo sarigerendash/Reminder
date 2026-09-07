@@ -9,13 +9,13 @@
     </tr>
   </thead>
   <tbody>
-    @for (h of svc.history(); track h.id) {
+    @for (run of svc.history(); track run.id) {
       <tr>
-        <td>{{ h.reminderName }}</td>
-        <td>{{ h.message }}</td>
-        <td>{{ h.startedAt | date:'dd/MM/yyyy HH:mm:ss' }}</td>
-        <td>{{ h.finishedAt | date:'dd/MM/yyyy HH:mm:ss' }}</td>
-        <td><span class="badge" [ngClass]="statusClass(h.status)">{{ h.status }}</span></td>
+        <td>{{ run.reminderName }}</td>
+        <td>{{ run.message }}</td>
+        <td>{{ run.startedAt | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+        <td>{{ run.finishedAt | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+        <td><span class="badge" [ngClass]="statusClass(run.status)">{{ run.status }}</span></td>
       </tr>
     } @empty {
       <tr><td colspan="5">אין עדיין היסטוריית שליחות</td></tr>
