@@ -21,3 +21,13 @@ export interface ReminderRequest {
   isActive: boolean;
   futureRunsCount: number;
 }
+
+export interface ReminderRun {
+  id: number;
+  reminderId: number;
+  reminderName: string;
+  message: string;
+  startedAt: string;
+  finishedAt: string;
+  status: ReminderStatus;
+}

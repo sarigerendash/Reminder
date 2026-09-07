@@ -1,0 +1,24 @@
+<div class="toolbar">
+  <h2>היסטוריית שליחות</h2>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>שם תזכורת</th><th>הודעה</th><th>התחלה</th><th>סיום</th><th>תוצאה</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (h of svc.history(); track h.id) {
+      <tr>
+        <td>{{ h.reminderName }}</td>
+        <td>{{ h.message }}</td>
+        <td>{{ h.startedAt | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+        <td>{{ h.finishedAt | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+        <td><span class="badge" [ngClass]="statusClass(h.status)">{{ h.status }}</span></td>
+      </tr>
+    } @empty {
+      <tr><td colspan="5">אין עדיין היסטוריית שליחות</td></tr>
+    }
+  </tbody>
+</table>

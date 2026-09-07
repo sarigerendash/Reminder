@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { AuthService } from './auth';
 import { Login } from './login/login';
 import { Reminders } from './reminders/reminders';
+import { History } from './history/history';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Login, Reminders],
+  imports: [Login, Reminders, History],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
+  view = signal<'list' | 'history'>('list');
+
   constructor(public auth: AuthService) {}
 }

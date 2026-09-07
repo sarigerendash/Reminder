@@ -1,16 +1,24 @@
 .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 10; }
+
 .modal {
   position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
   background: #fff; padding: 28px; border-radius: 8px; z-index: 11;
   width: 400px; display: flex; flex-direction: column; gap: 8px;
   box-shadow: 0 4px 24px rgba(0,0,0,.2);
+
+  h3 { margin: 0 0 8px; }
+  label { font-size: 13px; font-weight: 600; color: #555; }
+  input, textarea, select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; width: 100%; box-sizing: border-box; }
+
+  .checkbox-row {
+    display: flex; align-items: center; gap: 8px;
+
+    input { width: auto; }
+  }
+
+  .actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
+
+  .btn-primary { padding: 8px 20px; background: #1976d2; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+  .btn-secondary { padding: 8px 20px; background: #fff; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; }
+  .error { color: #d32f2f; font-size: 13px; margin: 0; }
 }
-h3 { margin: 0 0 8px; }
-label { font-size: 13px; font-weight: 600; color: #555; }
-input, textarea, select { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; width: 100%; box-sizing: border-box; }
-.checkbox-row { display: flex; align-items: center; gap: 8px; }
-.checkbox-row input { width: auto; }
-.actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
-.btn-primary { padding: 8px 20px; background: #1976d2; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
-.btn-secondary { padding: 8px 20px; background: #fff; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; }
-.error { color: #d32f2f; font-size: 13px; margin: 0; }

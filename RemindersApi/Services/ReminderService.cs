@@ -43,6 +43,13 @@ public class ReminderService(AppDbContext db) : IReminderService
         return ToResponse(reminder);
     }
 
+    public async Task<IEnumerable<ReminderRunResponse>> GetHistoryAsync() =>
+        await db.ReminderRuns
+            .OrderByDescending(h => h.FinishedAt)
+            .Select(h => new ReminderRunResponse(
+                h.Id, h.ReminderId, h.Reminder.Name, h.Reminder.Message, h.StartedAt, h.FinishedAt, h.Status))
+            .ToListAsync();
+
     private static ReminderResponse ToResponse(Reminder r) =>
         new(r.Id, r.Name, r.Message, r.ScheduledAt, r.Frequency, r.IsActive, r.FutureRunsCount, r.Status, r.CreatedAt);
 }

@@ -7,6 +7,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 {
     public DbSet<Reminder> Reminders => Set<Reminder>();
     public DbSet<User> Users => Set<User>();
+    public DbSet<ReminderRun> ReminderRuns => Set<ReminderRun>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

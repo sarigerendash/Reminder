@@ -25,3 +25,13 @@ public record ReminderResponse(
     ReminderStatus Status,
     DateTime CreatedAt
 );
+
+public record ReminderRunResponse(
+    int Id,
+    int ReminderId,
+    string ReminderName,
+    string Message,
+    DateTime StartedAt,
+    DateTime FinishedAt,
+    ReminderStatus Status
+);

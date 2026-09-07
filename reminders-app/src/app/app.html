@@ -3,9 +3,17 @@
 } @else {
   <header>
     <span>תזכורות מתוזמנות</span>
+    <nav>
+      <button [class.active]="view() === 'list'" (click)="view.set('list')">תזכורות</button>
+      <button [class.active]="view() === 'history'" (click)="view.set('history')">היסטוריית שליחות</button>
+    </nav>
     <button (click)="auth.logout()">התנתקות</button>
   </header>
   <main>
-    <app-reminders />
+    @if (view() === 'list') {
+      <app-reminders />
+    } @else {
+      <app-history />
+    }
   </main>
 }

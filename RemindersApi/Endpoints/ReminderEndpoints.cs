@@ -12,6 +12,9 @@ public static class ReminderEndpoints
         group.MapGet("/", async (IReminderService svc) =>
             Results.Ok(await svc.GetAllAsync()));
 
+        group.MapGet("/history", async (IReminderService svc) =>
+            Results.Ok(await svc.GetHistoryAsync()));
+
         group.MapGet("/{id:int}", async (int id, IReminderService svc) =>
             await svc.GetByIdAsync(id) is { } r ? Results.Ok(r) : Results.NotFound());
 

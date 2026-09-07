@@ -2,12 +2,6 @@
   display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
 
   h2 { margin: 0; }
-
-  .btn-primary {
-    padding: 8px 18px; background: #1976d2; color: #fff; border: none; border-radius: 4px; cursor: pointer;
-
-    &:hover { background: #1565c0; }
-  }
 }
 
 table {
@@ -18,14 +12,6 @@ table {
   tr:hover { background: #fafafa; }
 
   .badge { padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
-  .pending { background: #fff3e0; color: #e65100; }
-  .running { background: #e3f2fd; color: #1565c0; }
   .success { background: #e8f5e9; color: #2e7d32; }
   .failed { background: #ffebee; color: #c62828; }
-
-  .btn-edit {
-    padding: 4px 12px; background: #fff; border: 1px solid #1976d2; color: #1976d2; border-radius: 4px; cursor: pointer;
-
-    &:hover { background: #e3f2fd; }
-  }
 }
