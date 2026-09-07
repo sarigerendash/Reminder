@@ -1,0 +1,11 @@
+@if (!auth.isLoggedIn()) {
+  <app-login />
+} @else {
+  <header>
+    <span>תזכורות מתוזמנות</span>
+    <button (click)="auth.logout()">התנתקות</button>
+  </header>
+  <main>
+    <app-reminders />
+  </main>
+}

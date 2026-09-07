@@ -1,0 +1,17 @@
+# Node / Angular
+node_modules/
+.angular/
+dist/
+tmp/
+*.log
+
+# .NET / C#
+bin/
+obj/
+.vs/
+.vscode/
+.idea/
+*.user
+*.userosscache
+*.sln.docstates
+appsettings.Development.json

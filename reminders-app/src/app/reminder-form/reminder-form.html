@@ -1,0 +1,32 @@
+<div class="overlay" (click)="closed.emit()"></div>
+<div class="modal">
+  <h3>{{ reminder ? 'עריכת תזכורת' : 'תזכורת חדשה' }}</h3>
+
+  <label>שם *</label>
+  <input [(ngModel)]="form.name" placeholder="שם התזכורת" />
+
+  <label>הודעה</label>
+  <textarea [(ngModel)]="form.message" rows="3" placeholder="תוכן ההודעה"></textarea>
+
+  <label>תאריך ושעה *</label>
+  <input type="datetime-local" [(ngModel)]="form.scheduledAt" />
+
+  <label>תדירות</label>
+  <select [(ngModel)]="form.frequency">
+    @for (f of frequencies; track f) { <option [value]="f">{{ f }}</option> }
+  </select>
+
+  <label>מספר הרצות עתידיות</label>
+  <input type="number" [(ngModel)]="form.futureRunsCount" min="0" />
+
+  <label class="checkbox-row">
+    <input type="checkbox" [(ngModel)]="form.isActive" /> פעיל
+  </label>
+
+  @if (error()) { <p class="error">{{ error() }}</p> }
+
+  <div class="actions">
+    <button class="btn-secondary" (click)="closed.emit()">ביטול</button>
+    <button class="btn-primary" (click)="submit()">שמירה</button>
+  </div>
+</div>
