@@ -10,9 +10,6 @@ public class ReminderService(AppDbContext db) : IReminderService
     public async Task<IEnumerable<ReminderResponse>> GetAllAsync() =>
         await db.Reminders.Select(r => ToResponse(r)).ToListAsync();
 
-    public async Task<ReminderResponse?> GetByIdAsync(int id) =>
-        await db.Reminders.Where(r => r.Id == id).Select(r => ToResponse(r)).FirstOrDefaultAsync();
-
     public async Task<ReminderResponse> CreateAsync(ReminderRequest req)
     {
         var reminder = new Reminder
