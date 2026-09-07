@@ -43,8 +43,25 @@ public class ReminderBackgroundService(IServiceScopeFactory scopeFactory, ILogge
                 FinishedAt = DateTime.UtcNow,
                 Status = reminder.Status
             });
-            await db.SaveChangesAsync(ct);
             logger.LogInformation("Reminder {Id} finished with {Status}", reminder.Id, reminder.Status);
+
+            if (reminder.Frequency != Frequency.Once && reminder.FutureRunsCount > 0)
+            {
+                reminder.FutureRunsCount--;
+                reminder.ScheduledAt = NextOccurrence(reminder.ScheduledAt, reminder.Frequency);
+                reminder.Status = ReminderStatus.Pending;
+                logger.LogInformation("Reminder {Id} rescheduled to {Next}", reminder.Id, reminder.ScheduledAt);
+            }
+
+            await db.SaveChangesAsync(ct);
         }
     }
+
+    private static DateTime NextOccurrence(DateTime from, Frequency frequency) => frequency switch
+    {
+        Frequency.Daily => from.AddDays(1),
+        Frequency.Weekly => from.AddDays(7),
+        Frequency.Monthly => from.AddMonths(1),
+        _ => from
+    };
 }
